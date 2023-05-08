@@ -1,0 +1,17 @@
+# use python 3.10 alpine as base image
+FROM python:3.10-alpine
+
+# set container working/context directory
+WORKDIR /app
+
+# copy source code and requirements from src to container working directory
+COPY . /app
+
+# install all dependencies
+RUN pip3 install -r requirements.txt
+
+# expose port 8000
+EXPOSE 8000
+
+# run the application
+CMD ["python3", "app.py"]

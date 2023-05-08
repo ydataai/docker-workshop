@@ -1,0 +1,19 @@
+# `FROM`sets the base image for the container
+FROM python:3.10
+
+# `WORKDIR` sets the working directory for the container
+WORKDIR /code 
+
+# `COPY` copies files from the host machine to the container
+COPY ./app/src /code
+
+# `RUN` executes a command on top of the current image
+RUN pip3 install -r requirements.txt
+
+# `EXPOSE` informs Docker that the container listens on the
+# specified network port(s) at runtime
+EXPOSE 8000
+
+# `CMD` sets the default command to execute when running the container
+CMD ["python3", "app.py"]
+

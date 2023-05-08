@@ -4,9 +4,10 @@ FROM python:3.10-alpine AS builder
 
 COPY requirements.txt .
 
-# install all dependencies
-RUN pip3 install --user -r requirements.txt
-
+# install all dependencies in a virtual environment
+RUN python -m venv /opt/venv
+ENV PATH=/opt/venv/bin:$PATH
+RUN pip3 install -r requirements.txt
 
 # FINAL STAGE
 # use python 3.10 alpine as base image
@@ -20,11 +21,11 @@ WORKDIR /usr/src/app
 
 # copy only the dependencies from last stage and app source code from src to container working directory
 # extra step to change ownership of the directory to nonroot user
-COPY --from=builder --chown=nonroot:nonroot /root/.local /home/nonroot/.local
+COPY --from=builder /opt/venv /opt/venv
 COPY --chown=nonroot:nonroot ./src/app.py .
 
-# update PATH environment
-ENV PATH=/home/nonroot/.local:$PATH
+# update PATH environment to make sure we use the virtual environment
+ENV PATH=/opt/venv/bin:$PATH
 
 # expose port 8000
 EXPOSE 8000

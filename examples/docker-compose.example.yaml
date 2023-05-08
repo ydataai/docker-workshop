@@ -1,0 +1,29 @@
+version: "3"
+
+
+services:
+  frontend:
+    image: awesome/webapp
+    ports:
+      - "80:80"
+    networks:
+      - front-tier
+      - back-tier
+  
+  backend:
+    image: awesome/database
+    volumes:
+      - db-data:/etc/data
+    networks:
+      - back-tier
+
+
+volumes:
+  db-data:
+
+
+networks:
+  # The presence of these objects is enough to create the networks using the default driver (bridge)
+  front-tier: {}
+  back-tier: {}
+
