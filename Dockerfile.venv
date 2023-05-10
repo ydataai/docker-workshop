@@ -27,8 +27,8 @@ COPY --chown=nonroot:nonroot ./src/app.py .
 # update PATH environment to make sure we use the virtual environment
 ENV PATH=/opt/venv/bin:$PATH
 
-# expose port 8000
-EXPOSE 8000
+# expose port 80
+EXPOSE 80
 
 # change user to nonroot
 USER nonroot

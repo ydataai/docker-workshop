@@ -26,8 +26,8 @@ COPY --chown=nonroot:nonroot ./src/app.py .
 # update PATH environment
 ENV PATH=/home/nonroot/.local:$PATH
 
-# expose port 8000
-EXPOSE 8000
+# expose port 80
+EXPOSE 80
 
 # change user to nonroot
 USER nonroot
