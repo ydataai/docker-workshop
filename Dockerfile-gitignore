@@ -5,7 +5,7 @@ FROM python:3.10-alpine
 WORKDIR /app
 
 # copy source code and requirements from src to container working directory
-COPY . /app
+COPY . .
 
 # install all dependencies
 RUN pip3 install -r requirements.txt
@@ -14,4 +14,4 @@ RUN pip3 install -r requirements.txt
 EXPOSE 8000
 
 # run the application
-CMD ["python3", "app.py"]
+CMD ["python3", "src/app.py"]
