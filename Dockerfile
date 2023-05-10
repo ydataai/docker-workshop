@@ -13,8 +13,8 @@ RUN pip3 install -r requirements.txt
 # copy app source code from src to container working directory
 COPY ./src/app.py /app
 
-# expose port 8000
-EXPOSE 8000
+# expose port 80
+EXPOSE 80
 
 # run the application
 CMD ["python3", "app.py"]
